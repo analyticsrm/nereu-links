@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fourth Company | Importação Estratégica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #CC1118;
+      --teal: #3DBFB8;
+      --teal-dark: #2A9D96;
+      --white: #fff;
+    }
+
+    body { background: #000; font-family: 'Barlow', sans-serif; }
+
+    /* ═══════════════════════════════════════
+       SHARED: BADGE
+    ═══════════════════════════════════════ */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 999px;
+      padding: 7px 18px 7px 7px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .badge__icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .badge__icon svg {
+      width: 17px;
+      height: 17px;
+      fill: white;
+    }
+
+    .badge__text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .badge__text span:first-child {
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.03em;
+    }
+
+    .badge__text span:last-child {
+      font-size: 10px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.02em;
+    }
+
+    /* ═══════════════════════════════════════
+       MOBILE LAYOUT
+    ═══════════════════════════════════════ */
+    .mobile-view {
+      display: block;
+      background: #0d0d0d;
+    }
+
+    .mobile-view__header {
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px 18px;
+    }
+
+    .cards-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 12px 24px;
+    }
+
+    /* Card wrapper */
+    .card {
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Image portion of the card */
+    .card__photo {
+      position: relative;
+      width: 100%;
+      height: 52vw;
+      min-height: 180px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .card__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Canton Fair logo — posicionada sobre a foto, fora do overflow:hidden */
+    .card__photo-logo {
+      position: absolute;
+      top: 26%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 55%;
+      max-width: 170px;
+      height: auto;
+      z-index: 5;
+      filter: drop-shadow(0 2px 12px rgba(0,0,0,0.55));
+      pointer-events: none;
+    }
+
+    /* Coloured text strip */
+    .card__strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 28px 20px 32px;
+      min-height: 38vw;
+    }
+
+    .card--fitness   .card__strip { background: #3DBFB8; }
+    .card--multiprod .card__strip { background: #CC1118; }
+    .card--canton    .card__strip { background: #2FA89E; }
+
+    /* Multiprodutos: strip on top, photo on bottom */
+    .card--multiprod { flex-direction: column-reverse; }
+
+    .card__title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      line-height: 1.15;
+      color: #fff;
+      letter-spacing: 0.04em;
+      flex: 1;
+    }
+
+    .card__arrow {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+
+    .card__arrow svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ═══════════════════════════════════════
+       DESKTOP LAYOUT
+    ═══════════════════════════════════════ */
+    .desktop-view {
+      display: none;
+    }
+
+    .section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 560px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Background image */
+    .section__bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+
+    .section--fitness .section__bg    { background-image: url('ImportacaoFitnessDesktop.webp'); }
+    .section--multiprod .section__bg  { background-image: url('MultiprodutosDesktop.webp'); }
+    .section--canton .section__bg     { background-image: url('CantonFairDesktop.webp'); }
+
+    /* Dark gradient overlay */
+    .section__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.25) 0%,
+        rgba(0,0,0,0.15) 40%,
+        rgba(0,0,0,0.70) 75%,
+        rgba(0,0,0,0.82) 100%
+      );
+      z-index: 1;
+    }
+
+    /* Badge at top */
+    .section__badge {
+      position: relative;
+      z-index: 10;
+      margin-top: 32px;
+    }
+
+    /* Content at bottom center */
+    .section__content {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      width: 100%;
+      max-width: 700px;
+      padding: 0 24px 64px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+    }
+
+    .section__title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      letter-spacing: 0.05em;
+      color: #fff;
+      line-height: 1;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    }
+
+    .section__desc {
+      font-size: clamp(14px, 1.4vw, 16px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.6;
+      max-width: 520px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+    }
+
+    /* Pill button */
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 800;
+      font-size: clamp(13px, 1.3vw, 15px);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--red);
+      text-decoration: none;
+      padding: 15px 44px;
+      border-radius: 999px;
+      margin-top: 6px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 24px rgba(204, 17, 24, 0.45);
+    }
+
+    .btn-pill:hover {
+      background: #a80d13;
+      transform: scale(1.03);
+    }
+
+    /* Canton Fair logo block (desktop) */
+    .canton-brand {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -65%);
+      z-index: 10;
+    }
+
+    .canton-brand img {
+      height: clamp(88px, 12.5vw, 163px);
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 3px 20px rgba(0,0,0,0.6));
+    }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE BREAKPOINT
+    ═══════════════════════════════════════ */
+    @media (min-width: 768px) {
+      .mobile-view  { display: none; }
+      .desktop-view { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════
+       MOBILE VIEW
+  ══════════════════════════════ -->
+  <div class="mobile-view">
+    <div class="mobile-view__header">
+      <div class="badge">
+        <div class="badge__icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="badge__text">
+          <span>Fourth Company | Importação Estratégica</span>
+          <span>@fourthimportacao</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards-stack">
+
+      <!-- Card 1: Fitness — foto em cima, faixa teal embaixo -->
+      <div class="card card--fitness">
+        <div class="card__photo">
+          <img src="ImportacaoFitnessMobile.webp" alt="Importação Fitness" />
+        </div>
+        <div class="card__strip">
+          <span class="card__title">IMPORTAÇÃO<br>FITNESS</span>
+          <a class="card__arrow" href="https://form.respondi.app/XLNKMw5o" target="_blank" rel="noopener" aria-label="Acessar Importação Fitness">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12h14M14 7l5 5-5 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2: Multiprodutos — faixa vermelha em cima, foto embaixo -->
+      <div class="card card--multiprod">
+        <div class="card__photo">
+          <img src="MultiprodutosMobile.webp" alt="Importação Multiprodutos" />
+        </div>
+        <div class="card__strip">
+          <span class="card__title">IMPORTAÇÃO<br>MULTIPRODUTOS</span>
+          <a class="card__arrow" href="https://form.respondi.app/XLNKMw5o" target="_blank" rel="noopener" aria-label="Acessar Importação Multiprodutos">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12h14M14 7l5 5-5 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3: Canton Fair — foto com logo em cima, faixa teal embaixo -->
+      <div class="card card--canton" style="position:relative;">
+        <div class="card__photo">
+          <img src="CantonFairMobile.webp" alt="Canton Fair 2026" />
+        </div>
+        <img class="card__photo-logo" src="Elementos/canton-fair-logo.png" alt="Canton Fair logo" />
+        <div class="card__strip">
+          <span class="card__title">IMERSÃO<br>CANTON FAIR<br>2026</span>
+          <a class="card__arrow" href="https://form.respondi.app/y22rgSi6" target="_blank" rel="noopener" aria-label="Acessar Canton Fair">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12h14M14 7l5 5-5 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       DESKTOP VIEW
+  ══════════════════════════════ -->
+  <div class="desktop-view">
+
+    <!-- Section 1: Importação Fitness -->
+    <section class="section section--fitness">
+      <div class="section__bg"></div>
+      <div class="section__overlay"></div>
+      <div class="section__badge">
+        <div class="badge">
+          <div class="badge__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div class="badge__text">
+            <span>Fourth Company | Importação Estratégica</span>
+            <span>@fourthimportacao</span>
+          </div>
+        </div>
+      </div>
+      <div class="section__content">
+        <h2 class="section__title">IMPORTAÇÃO FITNESS</h2>
+        <p class="section__desc">Clique no botão abaixo e faça sua inscrição para importar equipamentos com segurança e margem</p>
+        <a class="btn-pill" href="https://form.respondi.app/XLNKMw5o" target="_blank" rel="noopener">IMPORTAR AGORA</a>
+      </div>
+    </section>
+
+    <!-- Section 2: Importação Multiprodutos -->
+    <section class="section section--multiprod">
+      <div class="section__bg"></div>
+      <div class="section__overlay"></div>
+      <div class="section__badge">
+        <div class="badge">
+          <div class="badge__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div class="badge__text">
+            <span>Fourth Company | Importação Estratégica</span>
+            <span>@fourthimportacao</span>
+          </div>
+        </div>
+      </div>
+      <div class="section__content">
+        <h2 class="section__title">IMPORTAÇÃO MULTIPRODUTOS</h2>
+        <p class="section__desc">Comece do jeito certo na importação multiprodutos!</p>
+        <a class="btn-pill" href="https://form.respondi.app/XLNKMw5o" target="_blank" rel="noopener">ENTRAR EM CONTATO</a>
+      </div>
+    </section>
+
+    <!-- Section 3: Imersão Canton Fair -->
+    <section class="section section--canton">
+      <div class="section__bg"></div>
+      <div class="section__overlay"></div>
+      <div class="section__badge">
+        <div class="badge">
+          <div class="badge__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div class="badge__text">
+            <span>Fourth Company | Importação Estratégica</span>
+            <span>@fourthimportacao</span>
+          </div>
+        </div>
+      </div>
+      <div class="canton-brand">
+        <img src="Elementos/canton-fair-logo.png" alt="Canton Fair" />
+      </div>
+      <div class="section__content">
+        <h2 class="section__title">IMERSÃO CANTON FAIR</h2>
+        <p class="section__desc">Imersão na Canton Fair é uma experiência prática e estratégica dentro da maior feira de negócios do mundo, conectando você diretamente com fabricantes, tendências globais e oportunidades reais de importação.</p>
+        <a class="btn-pill" href="https://form.respondi.app/y22rgSi6" target="_blank" rel="noopener">INSCREVA-SE</a>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
