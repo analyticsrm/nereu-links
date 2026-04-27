@@ -4,12 +4,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fourth Company | Importação Estratégica</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet" />
 
   <style>
+    @font-face {
+      font-family: 'Causten';
+      src: url('Elementos/causten-font-family-2026-04-07-05-54-37-utc/Causten-Regular.otf') format('opentype');
+      font-weight: 400; font-style: normal;
+    }
+    @font-face {
+      font-family: 'Causten';
+      src: url('Elementos/causten-font-family-2026-04-07-05-54-37-utc/Causten-Medium.otf') format('opentype');
+      font-weight: 500; font-style: normal;
+    }
+    @font-face {
+      font-family: 'Causten';
+      src: url('Elementos/causten-font-family-2026-04-07-05-54-37-utc/Causten-SemiBold.otf') format('opentype');
+      font-weight: 600; font-style: normal;
+    }
+    @font-face {
+      font-family: 'Causten';
+      src: url('Elementos/causten-font-family-2026-04-07-05-54-37-utc/Causten-Bold.otf') format('opentype');
+      font-weight: 700; font-style: normal;
+    }
+    @font-face {
+      font-family: 'Causten';
+      src: url('Elementos/causten-font-family-2026-04-07-05-54-37-utc/Causten-ExtraBold.otf') format('opentype');
+      font-weight: 800; font-style: normal;
+    }
+    @font-face {
+      font-family: 'Causten';
+      src: url('Elementos/causten-font-family-2026-04-07-05-54-37-utc/Causten-Black.otf') format('opentype');
+      font-weight: 900; font-style: normal;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     :root {
       --red: #CC1118;
@@ -18,10 +48,10 @@
       --white: #fff;
     }
 
-    body { background: #000; font-family: 'Barlow', sans-serif; }
+    body { background: #000; font-family: 'Causten', sans-serif; }
 
     /* ═══════════════════════════════════════
-       SHARED: BADGE
+       BADGE
     ═══════════════════════════════════════ */
     .badge {
       display: inline-flex;
@@ -73,7 +103,117 @@
     }
 
     /* ═══════════════════════════════════════
-       MOBILE LAYOUT
+       NAV HERO (desktop only)
+    ═══════════════════════════════════════ */
+    .nav-hero {
+      display: none;
+      background: var(--teal);
+    }
+
+    .nav-hero__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+      padding: 40px 40px 52px;
+    }
+
+    .nav-hero__cards {
+      display: flex;
+      gap: 20px;
+      align-items: stretch;
+      justify-content: center;
+      width: 100%;
+      max-width: 1080px;
+      height: 520px;
+    }
+
+    .nav-card {
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      max-width: 330px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .nav-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.28);
+    }
+
+    .nav-card__photo {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .nav-card__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .nav-card__strip {
+      flex-shrink: 0;
+      padding: 22px 22px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Fitness — image top, teal strip bottom */
+    .nav-card--fitness .nav-card__strip {
+      background: rgba(45, 160, 153, 0.72);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    /* Multiprodutos — red strip top, image bottom */
+    .nav-card--multiprod {
+      flex-direction: column-reverse;
+    }
+    .nav-card--multiprod .nav-card__strip {
+      background: var(--red);
+    }
+
+    /* Canton Fair — image top, dark teal strip bottom */
+    .nav-card--canton .nav-card__strip {
+      background: #3D6E6B;
+    }
+
+    .nav-card__title {
+      font-family: 'Causten', sans-serif;
+      font-weight: 800;
+      font-size: 21px;
+      line-height: 1.18;
+      color: #fff;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav-card__arrow {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .nav-card__arrow svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ═══════════════════════════════════════
+       MOBILE VIEW
     ═══════════════════════════════════════ */
     .mobile-view {
       display: block;
@@ -93,7 +233,6 @@
       padding: 0 12px 24px;
     }
 
-    /* Card wrapper */
     .card {
       border-radius: 16px;
       overflow: hidden;
@@ -101,7 +240,6 @@
       flex-direction: column;
     }
 
-    /* Image portion of the card */
     .card__photo {
       position: relative;
       width: 100%;
@@ -118,21 +256,6 @@
       display: block;
     }
 
-    /* Canton Fair logo — posicionada sobre a foto, fora do overflow:hidden */
-    .card__photo-logo {
-      position: absolute;
-      top: 26%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 55%;
-      max-width: 170px;
-      height: auto;
-      z-index: 5;
-      filter: drop-shadow(0 2px 12px rgba(0,0,0,0.55));
-      pointer-events: none;
-    }
-
-    /* Coloured text strip */
     .card__strip {
       display: flex;
       align-items: center;
@@ -146,11 +269,11 @@
     .card--multiprod .card__strip { background: #CC1118; }
     .card--canton    .card__strip { background: #2FA89E; }
 
-    /* Multiprodutos: strip on top, photo on bottom */
     .card--multiprod { flex-direction: column-reverse; }
 
     .card__title {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Causten', sans-serif;
+      font-weight: 800;
       font-size: 22px;
       line-height: 1.15;
       color: #fff;
@@ -176,7 +299,7 @@
     }
 
     /* ═══════════════════════════════════════
-       DESKTOP LAYOUT
+       DESKTOP VIEW — FULL SECTIONS
     ═══════════════════════════════════════ */
     .desktop-view {
       display: none;
@@ -193,7 +316,6 @@
       align-items: center;
     }
 
-    /* Background image */
     .section__bg {
       position: absolute;
       inset: 0;
@@ -206,7 +328,6 @@
     .section--multiprod .section__bg  { background-image: url('MultiprodutosDesktop.webp'); }
     .section--canton .section__bg     { background-image: url('CantonFairDesktop.webp'); }
 
-    /* Dark gradient overlay */
     .section__overlay {
       position: absolute;
       inset: 0;
@@ -220,14 +341,12 @@
       z-index: 1;
     }
 
-    /* Badge at top */
     .section__badge {
       position: relative;
       z-index: 10;
       margin-top: 32px;
     }
 
-    /* Content at bottom center */
     .section__content {
       position: absolute;
       bottom: 0;
@@ -245,11 +364,13 @@
     }
 
     .section__title {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Causten', sans-serif;
+      font-weight: 900;
       font-size: clamp(36px, 5vw, 56px);
       letter-spacing: 0.05em;
       color: #fff;
       line-height: 1;
+      text-transform: uppercase;
       text-shadow: 0 2px 20px rgba(0,0,0,0.5);
     }
 
@@ -260,14 +381,17 @@
       line-height: 1.6;
       max-width: 520px;
       text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
-    /* Pill button */
     .btn-pill {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Barlow', sans-serif;
+      font-family: 'Causten', sans-serif;
       font-weight: 800;
       font-size: clamp(13px, 1.3vw, 15px);
       letter-spacing: 0.12em;
@@ -287,32 +411,161 @@
       transform: scale(1.03);
     }
 
-    /* Canton Fair logo block (desktop) */
-    .canton-brand {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -65%);
-      z-index: 10;
+    /* ═══════════════════════════════════════
+       ABOUT — Nereu Coelho Jr.
+    ═══════════════════════════════════════ */
+    .about {
+      background: #0a0a0a;
+      padding: 80px 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
     }
 
-    .canton-brand img {
-      height: clamp(88px, 12.5vw, 163px);
-      width: auto;
-      display: block;
-      filter: drop-shadow(0 3px 20px rgba(0,0,0,0.6));
+    .about__inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      gap: 64px;
+      align-items: center;
     }
+
+    .about__photo {
+      flex-shrink: 0;
+      width: 320px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .about__photo img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .about__content { flex: 1; }
+
+    .about__name {
+      font-family: 'Causten', sans-serif;
+      font-weight: 900;
+      font-size: clamp(28px, 3.2vw, 44px);
+      color: var(--teal);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .about__role {
+      font-family: 'Causten', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+
+    .about__bio p {
+      font-size: clamp(14px, 1.3vw, 16px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .about__bio p:last-child { margin-bottom: 0; }
 
     /* ═══════════════════════════════════════
-       RESPONSIVE BREAKPOINT
+       RESPONSIVE
     ═══════════════════════════════════════ */
     @media (min-width: 768px) {
       .mobile-view  { display: none; }
       .desktop-view { display: block; }
+      .nav-hero     { display: block; }
+    }
+
+    @media (max-width: 767px) {
+      .about { padding: 56px 20px; }
+      .about__inner {
+        flex-direction: column;
+        gap: 28px;
+        align-items: center;
+        text-align: center;
+      }
+      .about__photo { width: 220px; }
+      .about__photo img { height: 280px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- ══════════════════════════════
+       NAV HERO — desktop only
+  ══════════════════════════════ -->
+  <div class="nav-hero">
+    <div class="nav-hero__inner">
+
+      <div class="badge">
+        <div class="badge__icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="badge__text">
+          <span>Fourth Company | Importação Estratégica</span>
+          <span>@fourthimportacao</span>
+        </div>
+      </div>
+
+      <div class="nav-hero__cards">
+
+        <a class="nav-card nav-card--fitness" href="#multiprodutos">
+          <div class="nav-card__photo">
+            <img src="MultiprodutosDesktop.webp" alt="Importação Multiprodutos" />
+          </div>
+          <div class="nav-card__strip">
+            <span class="nav-card__title">IMPORTAÇÃO<br>MULTIPRODUTOS</span>
+            <div class="nav-card__arrow">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12h14M14 7l5 5-5 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <a class="nav-card nav-card--multiprod" href="#fitness">
+          <div class="nav-card__photo">
+            <img src="ImportacaoFitnessDesktop.webp" alt="Importação Fitness" />
+          </div>
+          <div class="nav-card__strip">
+            <span class="nav-card__title">IMPORTAÇÃO<br>FITNESS</span>
+            <div class="nav-card__arrow">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12h14M14 7l5 5-5 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <a class="nav-card nav-card--canton" href="#canton">
+          <div class="nav-card__photo">
+            <img src="CantonFairDesktop.webp" alt="Imersão Canton Fair 2026" />
+          </div>
+          <div class="nav-card__strip">
+            <span class="nav-card__title">IMERSÃO<br>CANTON FAIR<br>2026</span>
+            <div class="nav-card__arrow">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12h14M14 7l5 5-5 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
 
   <!-- ══════════════════════════════
        MOBILE VIEW
@@ -334,23 +587,8 @@
 
     <div class="cards-stack">
 
-      <!-- Card 1: Fitness — foto em cima, faixa teal embaixo -->
+      <!-- Card 1: Multiprodutos -->
       <div class="card card--fitness">
-        <div class="card__photo">
-          <img src="ImportacaoFitnessMobile.webp" alt="Importação Fitness" />
-        </div>
-        <div class="card__strip">
-          <span class="card__title">IMPORTAÇÃO<br>FITNESS</span>
-          <a class="card__arrow" href="https://form.respondi.app/XLNKMw5o" target="_blank" rel="noopener" aria-label="Acessar Importação Fitness">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 12h14M14 7l5 5-5 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 2: Multiprodutos — faixa vermelha em cima, foto embaixo -->
-      <div class="card card--multiprod">
         <div class="card__photo">
           <img src="MultiprodutosMobile.webp" alt="Importação Multiprodutos" />
         </div>
@@ -364,12 +602,26 @@
         </div>
       </div>
 
-      <!-- Card 3: Canton Fair — foto com logo em cima, faixa teal embaixo -->
-      <div class="card card--canton" style="position:relative;">
+      <!-- Card 2: Fitness -->
+      <div class="card card--multiprod">
+        <div class="card__photo">
+          <img src="ImportacaoFitnessMobile.webp" alt="Importação Fitness" />
+        </div>
+        <div class="card__strip">
+          <span class="card__title">IMPORTAÇÃO<br>FITNESS</span>
+          <a class="card__arrow" href="https://form.respondi.app/XLNKMw5o" target="_blank" rel="noopener" aria-label="Acessar Importação Fitness">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12h14M14 7l5 5-5 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3: Canton Fair -->
+      <div class="card card--canton">
         <div class="card__photo">
           <img src="CantonFairMobile.webp" alt="Canton Fair 2026" />
         </div>
-        <img class="card__photo-logo" src="Elementos/canton-fair-logo.png" alt="Canton Fair logo" />
         <div class="card__strip">
           <span class="card__title">IMERSÃO<br>CANTON FAIR<br>2026</span>
           <a class="card__arrow" href="https://form.respondi.app/y22rgSi6" target="_blank" rel="noopener" aria-label="Acessar Canton Fair">
@@ -385,12 +637,12 @@
 
 
   <!-- ══════════════════════════════
-       DESKTOP VIEW
+       DESKTOP VIEW — SECTIONS
   ══════════════════════════════ -->
   <div class="desktop-view">
 
     <!-- Section 1: Importação Fitness -->
-    <section class="section section--fitness">
+    <section id="fitness" class="section section--fitness">
       <div class="section__bg"></div>
       <div class="section__overlay"></div>
       <div class="section__badge">
@@ -408,13 +660,13 @@
       </div>
       <div class="section__content">
         <h2 class="section__title">IMPORTAÇÃO FITNESS</h2>
-        <p class="section__desc">Clique no botão abaixo e faça sua inscrição para importar equipamentos com segurança e margem</p>
+        <p class="section__desc">Importe equipamentos fitness com segurança, margem e suporte especializado do início ao fim.</p>
         <a class="btn-pill" href="https://form.respondi.app/XLNKMw5o" target="_blank" rel="noopener">IMPORTAR AGORA</a>
       </div>
     </section>
 
     <!-- Section 2: Importação Multiprodutos -->
-    <section class="section section--multiprod">
+    <section id="multiprodutos" class="section section--multiprod">
       <div class="section__bg"></div>
       <div class="section__overlay"></div>
       <div class="section__badge">
@@ -438,7 +690,7 @@
     </section>
 
     <!-- Section 3: Imersão Canton Fair -->
-    <section class="section section--canton">
+    <section id="canton" class="section section--canton">
       <div class="section__bg"></div>
       <div class="section__overlay"></div>
       <div class="section__badge">
@@ -454,17 +706,38 @@
           </div>
         </div>
       </div>
-      <div class="canton-brand">
-        <img src="Elementos/canton-fair-logo.png" alt="Canton Fair" />
-      </div>
       <div class="section__content">
         <h2 class="section__title">IMERSÃO CANTON FAIR</h2>
-        <p class="section__desc">Imersão na Canton Fair é uma experiência prática e estratégica dentro da maior feira de negócios do mundo, conectando você diretamente com fabricantes, tendências globais e oportunidades reais de importação.</p>
+        <p class="section__desc">A maior feira de negócios do mundo — conecte-se diretamente a fabricantes e oportunidades reais de importação.</p>
         <a class="btn-pill" href="https://form.respondi.app/y22rgSi6" target="_blank" rel="noopener">INSCREVA-SE</a>
       </div>
     </section>
 
   </div>
+
+  <!-- ══════════════════════════════
+       ABOUT — Nereu Coelho Jr.
+  ══════════════════════════════ -->
+  <section class="about">
+    <div class="about__inner">
+
+      <div class="about__photo">
+        <img src="Elementos/4f69fdf0-8249-4a1b-bc9e-ccac0cc1c527.jpg" alt="Nereu Coelho Jr." />
+      </div>
+
+      <div class="about__content">
+        <h2 class="about__name">Nereu Coelho Jr.</h2>
+        <p class="about__role">CEO &amp; Fundador · Fourth Company</p>
+        <div class="about__bio">
+          <p>Empresário com mais de 20 anos de experiência em importação e 10 anos como CEO e fundador da Fourth Company, empresa especializada em logística internacional, desembaraço aduaneiro e operações completas de importação.</p>
+          <p>Ao longo de sua trajetória, ajudou empresas e empresários a reduzirem custos e aumentarem margens através da importação estratégica, conectando o mercado brasileiro diretamente às principais fábricas internacionais.</p>
+          <p>À frente da Fourth Company, lidera operações que envolvem sourcing internacional, frete global, despacho aduaneiro e entrega porta a porta, oferecendo soluções completas para quem deseja importar com segurança, estratégia e previsibilidade.</p>
+          <p>Com forte presença no mercado e nas redes sociais, Nereu compartilha conhecimento prático sobre importação, logística e estratégia empresarial, impactando empresários que buscam crescer, reduzir custos e escalar seus negócios através do comércio internacional.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
 
 </body>
 </html>
